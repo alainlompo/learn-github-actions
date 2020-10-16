@@ -1,15 +1,21 @@
---- 
-MY_GLOBAL_VAR_1: "“use me anywhere”"
-MY_JOB_SCOPED_VAR_1: "“use me in any step within this job”"
-MY_STEP_VAR: "“Use me directly with some-public/action@v1"
-env: ~
-job-1: ~
-jobs: ~
-name: "The designated name of the entire workflow file"
-runs-on: ubuntu-latest
-steps: 
-  - 
-    uses: some-public/action@v1
-true: 
-  - pull_request
-  - issues
+name: custom environment variables
+
+on: [pull_request, issues]
+
+# These variables are available on all actions/commands in the workflow
+env:
+  MY_GLOBAL_VAR_1: "Use me anywhere"
+
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    
+    # These vars are only available for job-1
+    
+    env:
+      MY_JOB_SCOPED_VAR_1: "use me in any step within this job"
+      
+    steps:
+      - uses: some-public/action@v1
+      
+      # These vars are available only on this step
