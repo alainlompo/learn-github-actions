@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Job 1 first step
         run: |
-          for i in {1..10}; do echo $i; sleep 2; done
+          for i in {1..10}; do echo $i; sleep 3; done
           echo "Job 1 has completed, Job 2 will now start"
   job-2:
     name: Second job
